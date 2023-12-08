@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/styleIndex.css' %}">
+</head>
+<body>
+    <h1>Assalamo Alikom</h1>
+    <p>{{ name }}</p>
+    <p>{{ age }}</p>
+    {% if name == 'ali' %}
+        <h1>Bonjour {{ name }}</h1>
+    {% elif name == 'oussama' %}
+        <h1>Assalamo Alikom {{ name }}</h1>
+        {% for foo in name %}
+        	<p>{{ foo }}</p>
+        {% endfor %}
+
+    {% else %}
+        <h1>Name not found</h1>
+    {% endif%}
+    <img src="{% static 'images/1.png' %}">
+</body>
+</html>
