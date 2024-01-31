@@ -5,6 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-
+    {% for x in pro %}
+        <h1>id = {{ x.id }} , name = {{ x.name }} , content = {{ x.content }} , img = <img src="{{ pro.img.url }}" alt=""></h1>
+        <img src="{{ x.img.url }}">
+    {% endfor %}
 </body>
 </html>

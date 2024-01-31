@@ -45,7 +45,7 @@
         <div class="d-flex align-items-center justify-content-between">
           <div class="logo">
             <div class="site-logo">
-              <a href="index.html" class="js-logo-clone">Pharma</a>
+              <a href="home" class="js-logo-clone">Pharma</a>
             </div>
           </div>
           <div class="main-nav d-none d-lg-block">
@@ -58,12 +58,7 @@
               </ul>
             </nav>
           </div>
-          <div class="icons">
-            <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
-            <a href="cart" class="icons-btn d-inline-block bag">
-              <span class="icon-shopping-bag"></span>
-              <span class="number">2</span>
-            </a>
+            <div class="icons">
             <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
                 class="icon-menu"></span></a>
           </div>
@@ -137,42 +132,20 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <span class="tag">Sale</span>
-            <a href="shop_single"> <img src="{% static 'images/product_01.png' %}" alt="Image"></a>
-            <h3 class="text-dark"><a href="shop_single">Bioderma</a></h3>
-            <p class="price"><del>95.00</del> &mdash; $55.00</p>
-          </div>
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <a href="shop_single"> <img src="{% static 'images/product_02.png' %}" alt="Image"></a>
-            <h3 class="text-dark"><a href="shop_single">Chanca Piedra</a></h3>
-            <p class="price">$70.00</p>
-          </div>
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <a href="shop_single"> <img src="{% static 'images/product_03.png' %}" alt="Image"></a>
-            <h3 class="text-dark"><a href="shop_single">Umcka Cold Care</a></h3>
-            <p class="price">$120.00</p>
-          </div>
+         <div class="row">
+                {% for X in x %}
+                    <div class="col-sm-6 col-lg-4 text-center item mb-4">
+                        <a href="{% url 'shop_single' %}?name={{ X.name }}"> <img src="{{ X.img.url }}" style="height: 200px;width: 200px" alt="Image"></a>
+                        <h3 class="text-dark"><a href="{% url 'shop_single' %}?name={{ X.name }}">{{ X.name }}</a></h3>
+                        <p class="price"><del>{{ X.price|add:"-12" }} DH</del> &mdash; {{ X.price }} DH</p>
+                    </div>
 
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
+                {% endfor %}
+         </div>
 
-            <a href="shop_single"> <img src="{% static 'images/product_04.png' %}" alt="Image"></a>
-            <h3 class="text-dark"><a href="shop_single">Cetyl Pure</a></h3>
-            <p class="price"><del>45.00</del> &mdash; $20.00</p>
-          </div>
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <a href="shop_single"> <img src="{% static 'images/product_05.png' %}" alt="Image"></a>
-            <h3 class="text-dark"><a href="shop_single">CLA Core</a></h3>
-            <p class="price">$38.00</p>
-          </div>
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <span class="tag">Sale</span>
-            <a href="shop_single"> <img src="{% static 'images/product_06.png' %}" alt="Image"></a>
-            <h3 class="text-dark"><a href="shop_single">Poo Pourri</a></h3>
-            <p class="price"><del>$89</del> &mdash; $38.00</p>
-          </div>
-        </div>
+
+
+
         <div class="row mt-5">
           <div class="col-12 text-center">
             <a href="shop" class="btn btn-primary px-4 py-3">View All Products</a>
@@ -192,31 +165,15 @@
         <div class="row">
           <div class="col-md-12 block-3 products-wrap">
             <div class="nonloop-block-3 owl-carousel">
-
-              <div class="text-center item mb-4">
-                <a href="shop_single"> <img src="{% static 'images/product_03.png' %}" alt="Image"></a>
-                <h3 class="text-dark"><a href="shop_single">Umcka Cold Care</a></h3>
-                <p class="price">$120.00</p>
-              </div>
-
-              <div class="text-center item mb-4">
-                <a href="shop_single"> <img src="{% static 'images/product_01.png' %}" alt="Image"></a>
-                <h3 class="text-dark"><a href="shop_single">Umcka Cold Care</a></h3>
-                <p class="price">$120.00</p>
-              </div>
-
-              <div class="text-center item mb-4">
-                <a href="shop_single"> <img src="{% static 'images/product_02.png' %}" alt="Image"></a>
-                <h3 class="text-dark"><a href="shop_single">Umcka Cold Care</a></h3>
-                <p class="price">$120.00</p>
-              </div>
-
-              <div class="text-center item mb-4">
-                <a href="shop_single"> <img src="{% static 'images/product_04.png' %}" alt="Image"></a>
-                <h3 class="text-dark"><a href="shop_single">Umcka Cold Care</a></h3>
-                <p class="price">$120.00</p>
-              </div>
-
+                {% for X in x %}
+                    {% if X.new %}
+                    <div class="text-center item mb-4">
+                        <a href="shop_single"> <img src="{{ X.img.url }}" alt="Image" style="width: 200px;height: 400px"></a>
+                        <h3 class="text-dark"><a href="shop_single">{{ X.name }}</a></h3>
+                        <p class="price">{{ X.price }}</p>
+                    </div>
+                    {% endif %}
+                {% endfor %}
             </div>
           </div>
         </div>
